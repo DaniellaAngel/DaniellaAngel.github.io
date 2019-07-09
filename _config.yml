@@ -1,1 +1,88 @@
-theme: jekyll-theme-cayman
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# 这个config文件是为了设置一些不经常更改的全局的值，如果你发现你自己经常修改这个文件，
+# 可以考虑使用Jekyll的data文件的特性来满足自己的需求。
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+#
+#因为技术原因，这个文件不会在执行“bundle exec jekyll serve”的时候重新加载，如果你修改了这个文件，请重启服务器
+#
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+#
+#站点设置
+#这里可以个性化你的网站，如果你查看HTML文件，你可以看到一些引用{{ site.title }}, {{ site.email }},等
+#你可以新建任何你想要新建的值，这些值都可以在模板中通过{{ site.myvariable }}的方式来呗引用
+#
+title: 蛋壳er蛋蛋
+email: 1046227514@qq.com
+description: >- # this means to ignore newlines until "baseurl:"
+  我是一名软件工程师，坐标上海。目前主要是做web前端，Flag我就不立了，这里会写各种吧应该，先push一些当前学过的基础知识复习。
+  先就这些吧，以后应该会更新。20190709
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
+#插件 Gemfile中也要添加
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+
+#配置博主信息
+author: '胡丹丹'
+nickname: '丹哥'
+bio: '软件开发者，不会前端的程序媛不是好的全栈攻城狮'
+avatar: '/assets/img/profile.jpg'
+ 
+ # SNS settings 配置社交网站
+# url: email, weibo, zhihu, twitter, instagram, juejin, github, douban, facebook, dribble, uicn, jianshu, medium, linkedin
+sns:
+  email: '1046227514@qq.com'
+  juejin: '//juejin.im/user/5cef91b1f265da1ba77c88d6'
+  github: '//github.com/DaniellaAngel'
+  zhihu: '//www.zhihu.com/people/hu-dan-dan-28-78/activities'
+
+#导航设置
+nav:
+  home: '/'
+  about: '/about'
+
+#Footer设置
+footer:
+  since: 2019
+
+#Build settings
+paginate: 5
+paginate_path: 'page:num'
+markdown: kramdown
+theme: minima
+exclude: ['node_modules', 'dev', 'package.json']
+
+# theme color 主题皮肤
+theme-color: 'default'  # pink or default
+# Post header background patterns (when the post no cover): circuitBoard, overlappingCircles, food, glamorous, ticTacToe, seaOfClouds
+postPatterns: 'ticTacToe'
+
+
+
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# 默认情况下，不会处理以下项目。 创建自定义列表以覆盖默认设置。
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
