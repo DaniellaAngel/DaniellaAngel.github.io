@@ -1,0 +1,105 @@
+<!-- _post文件中的HTML使用此处的layout方式 -->
+<!DOCTYPE html>
+<html>
+{% include post-head.html %}
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+<input id="nm-switch" type="hidden" value="{{ site.nightMode }}"> {% include header.html %}
+
+<!--博客banner加底纹 -->
+<header
+class="g-banner post-header {{ site.postPatterns | prepend: 'post-pattern-' }} {{ site.theme-color | prepend: 'bgcolor-' }} {% unless page.cover %}post-no-cover{% endunless %}"
+data-theme="{{ site.theme-color }}"
+>
+<div class="post-wrapper">
+	<h1>{{ page.title }}</h1>
+	<div class="post-meta">
+		<span class="post-meta-item"><i class="iconfont icon-author"></i>{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}</span>
+		<time class="post-meta-item" datetime="{{ page.date | date:"%y-%m-%d" }}"><i class="iconfont icon-date"></i>{{ page.date | date_to_string }}</time>
+	</div>
+</div>
+<!-- cover 是设置图片不准备使用，预留，能用CSS解决的就不额外加载图片 -->
+{% if page.cover %}
+<div class="filter"></div>
+<div class="post-cover" style="background: url('{{ page.cover | relative_url }}') center no-repeat; background-size: cover;"></div>
+{% endif %}
+</header>
+
+<div class="post-content visible">
+	<!-- 副标题 -->
+	{% if page.subtitle %}
+	<h2 class="post-subtitle">{{ page.subtitle }}</h2>
+	{% endif %}
+	<!-- markDown部分内容 -->
+	<article class="markdown-body">
+		{{ page.content }}
+	</article>
+</div>
+
+<section class="author-detail">
+<!-- 底部的作者信息 -->
+	<section class="post-footer-item author-card">
+		<div class="avatar">
+			<img src="{{ site.avatar | relative_url }}" alt="">
+		</div>
+		<div class="author-name" rel="author">{{ site.author }}</div>
+		<div class="bio">
+			<p>{{ site.bio }}</p>
+		</div>
+		{% if site.sns.size > 0 %}
+		<ul class="sns-links">
+			{% for s in site.sns %}
+			<li>
+				<a href="{{ s[1] }}" target="_blank">
+					<i class="iconfont icon-{{ s[0] }}"></i>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+	</section>
+	
+	<section class="post-footer-item read-next">
+		{% if page.next.url %}
+		<div class="read-next-item">
+			<a href="{{ page.next.url | relative_url }}" class="read-next-link"></a>
+			<section>
+				<p>上一篇</p>
+				<span>{{ page.next.title }}</span>
+				<p>{{ page.next.subtitle | strip_html | strip_newlines | truncate: 60}}</p>
+			</section>
+			{% if page.next.cover %}
+			<div class="filter"></div>
+			<img src="{{ page.next.cover | relative_url }}" alt="">
+			{% endif %}
+		</div>
+		{% endif %}
+		{% if page.previous.url %}
+		<div class="read-next-item">
+			<a href="{{ page.previous.url | relative_url }}" class="read-next-link"></a>
+			<section>
+				<p>下一篇</p>
+				<span>{{ page.previous.title }}</span>
+				<p>{{ page.previous.subtitle | strip_html | strip_newlines | truncate: 60}}</p>
+			</section>
+			{% if page.previous.cover %}
+			<div class="filter"></div>
+			<img src="{{ page.previous.cover | relative_url }}" alt="">
+			{% endif %}
+		</div>
+		{% endif %}
+		
+	</section>
+</section>
+
+{% include footer.html %}
+<a href="javascript:;" id="toTop" class="post-to-top" title="回到顶部"/>
+<script src="{{ "/assets/js/prism.js" | relative_url }}"></script>
+<script src="{{ "/assets/js/index.js" | relative_url }}"></script>
+<script src="{{ "/assets/js/toTop.js" | relative_url }}"></script>
+</body>
+
+</html>

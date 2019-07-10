@@ -45,10 +45,10 @@ avatar: '/assets/img/profile.jpg'
  # SNS settings 配置社交网站
 # url: email, weibo, zhihu, twitter, instagram, juejin, github, douban, facebook, dribble, uicn, jianshu, medium, linkedin
 sns:
-  email: '1046227514@qq.com'
-  juejin: '//juejin.im/user/5cef91b1f265da1ba77c88d6'
-  github: '//github.com/DaniellaAngel'
   zhihu: '//www.zhihu.com/people/hu-dan-dan-28-78/activities'
+  github: '//github.com/DaniellaAngel'
+  juejin: '//juejin.im/user/5cef91b1f265da1ba77c88d6'
+
 
 #导航设置
 nav:
@@ -60,7 +60,7 @@ footer:
   since: 2019
 
 #Build settings
-paginate: 5
+paginate: 3
 paginate_path: 'page:num'
 markdown: kramdown
 theme: minima

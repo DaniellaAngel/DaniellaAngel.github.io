@@ -1,0 +1,236 @@
+<!-- _post文件中的HTML使用此处的layout方式 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>0.JavaScript简介 - 蛋壳er蛋蛋</title>
+	<meta name="author" content="胡丹丹">
+	<meta name="description" content="我是一名软件工程师，坐标上海。目前主要是做web前端，Flag我就不立了，这里会写各种吧应该，先push一些当前学过的基础知识复习。 先就这些吧，以后应该会更新。20190709">
+	<!-- Normalize.css是一种CSS reset的替代方案。它在默认的HTML元素样式上提供了跨浏览器的高度一致性-->
+	<link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+	<!--  -->
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_271755_rdxzzo2kqwk.css">
+	<link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+	<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	<!-- 做一些不同的配置 -->
+</head>
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+<input id="nm-switch" type="hidden" value=""> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/about">about</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+<!--博客banner加底纹 -->
+<header
+class="g-banner post-header post-pattern-ticTacToe bgcolor-default post-no-cover"
+data-theme="default"
+>
+<div class="post-wrapper">
+	<h1>0.JavaScript简介</h1>
+	<div class="post-meta">
+		<span class="post-meta-item"><i class="iconfont icon-author"></i>胡丹丹</span>
+		<time class="post-meta-item" datetime="19-07-09"><i class="iconfont icon-date"></i>09 Jul 2019</time>
+	</div>
+</div>
+<!-- cover 是设置图片不准备使用，预留，能用CSS解决的就不额外加载图片 -->
+
+</header>
+
+<div class="post-content visible">
+	<!-- 副标题 -->
+	
+	<h2 class="post-subtitle">JavaScript的组成和引入方式</h2>
+	
+	<!-- markDown部分内容 -->
+	<article class="markdown-body">
+		<h3 id="网页网站和应用程序">网页、网站和应用程序</h3>
+
+<blockquote>
+  <p>网页： 单独的一个页面<br />
+网站： 一些相关的网页组成在一起，就变成了网站<br />
+应用程序： 可以和用户产生交互，并且实现某种功能<br />
+    使用web技术也可以用来做应用程序（百度脑图演示）</p>
+</blockquote>
+
+<h3 id="javascript能做啥">JavaScript能做啥？</h3>
+<ol>
+  <li><a href="https://impress.js.org/#/step-2">impressJS</a></li>
+  <li><a href="http://naotu.baidu.com/">百度脑图</a></li>
+  <li><a href="https://codecombat.163.com/play">极客战记</a></li>
+</ol>
+
+<h3 id="javascript介绍">JavaScript介绍</h3>
+
+<h4 id="javascript是什么">JavaScript是什么</h4>
+
+<p>它最初由Netscape的Brendan Eich设计。Netscape在最初将其脚本语言命名为LiveScript，后来Netscape在与Sun合作之后将其改名为JavaScript。JavaScript最初受Java启发而开始设计的，目的之一就是“看上去像Java”，因此语法上有类似之处，一些名称和命名规范也借自Java。JavaScript与Java名称上的近似，是当时Netscape为了营销考虑与Sun微系统达成协议的结果。为了取得技术优势，微软推出了JScript来迎战JavaScript的脚本语言。为了互用性，ECMA国际创建了ECMA-262标准（ECMAScript）。两者都属于ECMAScript的实现。</p>
+
+<blockquote>
+  <p>JavaScript 是一种运行在<strong>客户端</strong>的<em>脚本语言</em><br />
+JavaScript 的解释器称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言。</p>
+</blockquote>
+
+<h4 id="javascript最初的目的">JavaScript最初的目的</h4>
+<p>为了减少网络请求响应时间，在客户端进行表单验证。</p>
+
+<h4 id="javascript的目前的应用场景">JavaScript的目前的应用场景</h4>
+<p>JavaScript 无所不能</p>
+
+<ol>
+  <li>网页特效</li>
+  <li>服务端开发(<a href="https://nodejs.org">Node.js</a>)</li>
+  <li>命令行工具（<a href="https://nodejs.org">Node.js</a>）</li>
+  <li>桌面应用（<a href="https://electronjs.org/">Electron</a>）</li>
+  <li>App(<a href="https://cordova.apache.org/">Cordova</a>)</li>
+  <li>硬件控制-物联网（<a href="https://ruff.io/">Ruff</a>）</li>
+  <li>游戏开发（<a href="https://www.cocos.com/docs/js/">Cocos2d-JS</a>）<br />
+etc.</li>
+</ol>
+
+<h4 id="javascript-与-htmlcss的区别">JavaScript 与 HTML、CSS的区别</h4>
+
+<ol>
+  <li>HTML 提供网页结构，提供网页中的内容</li>
+  <li>CSS 用于美化页面</li>
+  <li>JavaScript 用来控制页面内容，给页面增加动态效果</li>
+</ol>
+
+<h4 id="javascript的组成">JavaScript的组成</h4>
+
+<ul>
+  <li>ECMAScript<br />
+ECMA 欧洲计算机联合会</li>
+</ul>
+
+<p>定义了JavaScript的语法规范。它是JavaScript的核心，描述了语言的基本语法和数据类型，ECMAScirpt是一套标准，定义了语言的标准，与具体的实现是无关的。</p>
+
+<ul>
+  <li>
+    <p>BOM - 浏览器模型对象
+一套操作浏览器功能的API，比如 弹出框、控制浏览器跳转，获取分辨率等等</p>
+  </li>
+  <li>
+    <p>DOM - 文档对象模型
+一套操作页面的API，把HTML看成是一个文档树，通过DOM的API可以对树上的节点进行操作。</p>
+  </li>
+</ul>
+
+<h3 id="javascript初体验">JavaScript初体验</h3>
+<p>css书写位置</p>
+
+<p>js书写位置</p>
+
+<ul>
+  <li>行内JS</li>
+  <li>内部JS</li>
+  <li>外部js
+    <blockquote>
+      <p>不能在引入外部js的同时，书写内部js代码</p>
+    </blockquote>
+  </li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">demo.js</span><span class="dl">"</span><span class="o">&gt;</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">1</span><span class="dl">'</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span><span class="c1">//这个1永远不会出现</span>
+</code></pre></div></div>
+
+	</article>
+</div>
+
+<section class="author-detail">
+<!-- 底部的作者信息 -->
+	<section class="post-footer-item author-card">
+		<div class="avatar">
+			<img src="/assets/img/profile.jpg" alt="">
+		</div>
+		<div class="author-name" rel="author">胡丹丹</div>
+		<div class="bio">
+			<p>软件开发者，不会前端的程序媛不是好的全栈攻城狮</p>
+		</div>
+		
+		<ul class="sns-links">
+			
+			<li>
+				<a href="//www.zhihu.com/people/hu-dan-dan-28-78/activities" target="_blank">
+					<i class="iconfont icon-zhihu"></i>
+				</a>
+			</li>
+			
+			<li>
+				<a href="//github.com/DaniellaAngel" target="_blank">
+					<i class="iconfont icon-github"></i>
+				</a>
+			</li>
+			
+			<li>
+				<a href="//juejin.im/user/5cef91b1f265da1ba77c88d6" target="_blank">
+					<i class="iconfont icon-juejin"></i>
+				</a>
+			</li>
+			
+		</ul>
+		
+	</section>
+	
+	<section class="post-footer-item read-next">
+		
+		<div class="read-next-item">
+			<a href="/jekyll/update/2019/07/09/javascript-base-1.html" class="read-next-link"></a>
+			<section>
+				<p>上一篇</p>
+				<span>1.JavaScript基础(变量，数据类型)</span>
+				<p>JavaScript基础知识：变量和数据类型概述</p>
+			</section>
+			
+		</div>
+		
+		
+		<div class="read-next-item">
+			<a href="/jekyll/update/2019/07/08/welcome-to-jekyll.html" class="read-next-link"></a>
+			<section>
+				<p>下一篇</p>
+				<span>Jekyll使用简介</span>
+				<p>建博客参考文档</p>
+			</section>
+			
+		</div>
+		
+		
+	</section>
+</section>
+
+<footer class="g-footer">
+  <section>蛋壳er蛋蛋 ©
+  
+  
+  2019
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a></section>
+</footer>
+<a href="javascript:;" id="toTop" class="post-to-top" title="回到顶部"/>
+<script src="/assets/js/prism.js"></script>
+<script src="/assets/js/index.js"></script>
+<script src="/assets/js/toTop.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!-- _post文件中的HTML使用此处的layout方式 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Jekyll使用简介 - 蛋壳er蛋蛋</title>
+	<meta name="author" content="胡丹丹">
+	<meta name="description" content="我是一名软件工程师，坐标上海。目前主要是做web前端，Flag我就不立了，这里会写各种吧应该，先push一些当前学过的基础知识复习。 先就这些吧，以后应该会更新。20190709">
+	<!-- Normalize.css是一种CSS reset的替代方案。它在默认的HTML元素样式上提供了跨浏览器的高度一致性-->
+	<link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+	<!--  -->
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_271755_rdxzzo2kqwk.css">
+	<link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+	<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	<!-- 做一些不同的配置 -->
+</head>
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+<input id="nm-switch" type="hidden" value=""> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/about">about</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+<!--博客banner加底纹 -->
+<header
+class="g-banner post-header post-pattern-ticTacToe bgcolor-default post-no-cover"
+data-theme="default"
+>
+<div class="post-wrapper">
+	<h1>Jekyll使用简介</h1>
+	<div class="post-meta">
+		<span class="post-meta-item"><i class="iconfont icon-author"></i>胡丹丹</span>
+		<time class="post-meta-item" datetime="19-07-08"><i class="iconfont icon-date"></i>08 Jul 2019</time>
+	</div>
+</div>
+<!-- cover 是设置图片不准备使用，预留，能用CSS解决的就不额外加载图片 -->
+
+</header>
+
+<div class="post-content visible">
+	<!-- 副标题 -->
+	
+	<h2 class="post-subtitle">建博客参考文档</h2>
+	
+	<!-- markDown部分内容 -->
+	<article class="markdown-body">
+		<h2 id="安装jekyll">安装jekyll</h2>
+
+<p>因为jekyll在本地运行需要Ruby环境，如果想要在本地预览博客，需要首先配置好本地环境。参考<a href="http://jekyllcn.com/docs/installation/">安装jekyll</a></p>
+
+<h2 id="中文版文档">中文版文档</h2>
+
+<p>jekyll中文版网站<a href="http://jekyllcn.com/docs/home/">参考地址</a></p>
+
+<h2 id="代码片段支持">代码片段支持</h2>
+
+<p>Jekyll还为代码片段提供强大的支持，如下:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+
+	</article>
+</div>
+
+<section class="author-detail">
+<!-- 底部的作者信息 -->
+	<section class="post-footer-item author-card">
+		<div class="avatar">
+			<img src="/assets/img/profile.jpg" alt="">
+		</div>
+		<div class="author-name" rel="author">胡丹丹</div>
+		<div class="bio">
+			<p>软件开发者，不会前端的程序媛不是好的全栈攻城狮</p>
+		</div>
+		
+		<ul class="sns-links">
+			
+			<li>
+				<a href="//www.zhihu.com/people/hu-dan-dan-28-78/activities" target="_blank">
+					<i class="iconfont icon-zhihu"></i>
+				</a>
+			</li>
+			
+			<li>
+				<a href="//github.com/DaniellaAngel" target="_blank">
+					<i class="iconfont icon-github"></i>
+				</a>
+			</li>
+			
+			<li>
+				<a href="//juejin.im/user/5cef91b1f265da1ba77c88d6" target="_blank">
+					<i class="iconfont icon-juejin"></i>
+				</a>
+			</li>
+			
+		</ul>
+		
+	</section>
+	
+	<section class="post-footer-item read-next">
+		
+		<div class="read-next-item">
+			<a href="/jekyll/update/2019/07/09/Introduce-javascript.html" class="read-next-link"></a>
+			<section>
+				<p>上一篇</p>
+				<span>0.JavaScript简介</span>
+				<p>JavaScript的组成和引入方式</p>
+			</section>
+			
+		</div>
+		
+		
+		
+	</section>
+</section>
+
+<footer class="g-footer">
+  <section>蛋壳er蛋蛋 ©
+  
+  
+  2019
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a></section>
+</footer>
+<a href="javascript:;" id="toTop" class="post-to-top" title="回到顶部"/>
+<script src="/assets/js/prism.js"></script>
+<script src="/assets/js/index.js"></script>
+<script src="/assets/js/toTop.js"></script>
+</body>
+
+</html>

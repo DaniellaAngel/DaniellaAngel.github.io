@@ -1,0 +1,512 @@
+<!-- _post文件中的HTML使用此处的layout方式 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>1.JavaScript基础(变量，数据类型) - 蛋壳er蛋蛋</title>
+	<meta name="author" content="胡丹丹">
+	<meta name="description" content="我是一名软件工程师，坐标上海。目前主要是做web前端，Flag我就不立了，这里会写各种吧应该，先push一些当前学过的基础知识复习。 先就这些吧，以后应该会更新。20190709">
+	<!-- Normalize.css是一种CSS reset的替代方案。它在默认的HTML元素样式上提供了跨浏览器的高度一致性-->
+	<link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+	<!--  -->
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_271755_rdxzzo2kqwk.css">
+	<link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+	<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	<!-- 做一些不同的配置 -->
+</head>
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+<input id="nm-switch" type="hidden" value=""> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/about">about</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+<!--博客banner加底纹 -->
+<header
+class="g-banner post-header post-pattern-ticTacToe bgcolor-default post-no-cover"
+data-theme="default"
+>
+<div class="post-wrapper">
+	<h1>1.JavaScript基础(变量，数据类型)</h1>
+	<div class="post-meta">
+		<span class="post-meta-item"><i class="iconfont icon-author"></i>胡丹丹</span>
+		<time class="post-meta-item" datetime="19-07-09"><i class="iconfont icon-date"></i>09 Jul 2019</time>
+	</div>
+</div>
+<!-- cover 是设置图片不准备使用，预留，能用CSS解决的就不额外加载图片 -->
+
+</header>
+
+<div class="post-content visible">
+	<!-- 副标题 -->
+	
+	<h2 class="post-subtitle">JavaScript基础知识：变量和数据类型概述</h2>
+	
+	<!-- markDown部分内容 -->
+	<article class="markdown-body">
+		<h3 id="1-变量">1. 变量</h3>
+
+<h4 id="11-什么是变量">1.1 什么是变量</h4>
+<ul>
+  <li>变量是计算机内存中存储数据的标识符，根据变量名称可以取得内存中存储的数据</li>
+  <li>为什么要使用变量
+    <ul>
+      <li>使用变量可以方便获取或者修改内存中的数据</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="12-如何使用变量">1.2 如何使用变量</h4>
+<ul>
+  <li>var 声明变量
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">age</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>变量赋值
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">age</span><span class="p">;</span>
+<span class="nx">age</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>变量的初始化
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 在声明的同时赋值 --- 变量的初始化</span>
+<span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>同时声明多个变量
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">sex</span><span class="p">;</span>
+<span class="nx">age</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">张三</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>同时声明多个变量并赋值
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">18</span><span class="p">,</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">张三</span><span class="dl">'</span><span class="p">,</span><span class="nx">sex</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">男</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">sex</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="13-变量的命名规则和规范">1.3 变量的命名规则和规范</h4>
+
+<ul>
+  <li>规则 - 必须遵守，不遵守就会报错
+    <ul>
+      <li>由字母、数字、下划线、$符号组成，不能以数字开头</li>
+      <li>不能是关键字和保留字，例如： for  while 等等</li>
+      <li>区分大小写</li>
+    </ul>
+  </li>
+  <li>规范 - 建议遵守，不遵守也不会报错
+    <ul>
+      <li>变量名要有意义</li>
+      <li>驼峰命名法。 首字母小写，后边单词的首字母大写。 <code class="highlighter-rouge">userName</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="14-字面量">1.4 字面量</h4>
+
+<p>数值固定值的表示方法</p>
+
+<p>8，9，10，’张三’,false ,true</p>
+
+<h3 id="2-数据类型">2. 数据类型</h3>
+<h4 id="21-简单数据类型">2.1 简单数据类型</h4>
+
+<p><strong>Number、String、Boolean、undefined、null</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">张三</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="c1">// 在c 、 Java  c#中声明变量的时候就确定了数据类型</span>
+    <span class="c1">// int age = 18;</span>
+    <span class="c1">// 在JavaScript中，声明变量的时候并没有确定变量的数据类型，</span>
+    <span class="c1">// JavaScript是一门弱类型的语言，是一门动态类型的语言</span>
+    <span class="c1">// age = 'abc'; // 这样也是合法的</span>
+    <span class="c1">// 在代码的执行过程中，才会确定变量的类型</span>
+</code></pre></div></div>
+
+<h4 id="22-number类型">2.2 Number类型</h4>
+<ul>
+  <li>进制</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 十进制</span>
+<span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+<span class="c1">// 在计算机中，存储的时候都是2进制，但是在计算中，一般都转换成10进制</span>
+<span class="c1">// 其它进制表示方法</span>
+<span class="c1">// 十六进制</span>
+<span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mh">0xA</span><span class="p">;</span>
+<span class="c1">// 八进制</span>
+<span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">07</span><span class="p">;</span>
+</code></pre></div></div>
+<ul>
+  <li>浮点数</li>
+</ul>
+
+<blockquote>
+  <p>因为存储的都是2进制，所以浮点数会存在精度问题，永远不要用浮动数去做比较，要扩大倍数转换成整数比较。</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">+</span><span class="mf">0.2</span> <span class="c1">//a  0.30000000000000004</span>
+ <span class="mf">0.1</span><span class="o">+</span><span class="mf">0.2</span><span class="o">==</span><span class="mf">0.3</span> <span class="c1">// false</span>
+</code></pre></div></div>
+
+<ul>
+  <li>数值的取值范围</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 最大值：</span>
+<span class="nb">Number</span><span class="p">.</span><span class="nx">MAX_VALUE</span> <span class="c1">//1.7976931348623157e+308</span>
+<span class="c1">// 最小值：</span>
+<span class="nb">Number</span><span class="p">.</span><span class="nx">MIN_VALUE</span> <span class="c1">//5e-324</span>
+<span class="c1">//无穷大：</span>
+<span class="kc">Infinity</span>
+<span class="c1">// 负无穷</span>
+<span class="o">-</span><span class="kc">Infinity</span>
+
+<span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">a</span><span class="o">/</span><span class="mi">0</span> <span class="c1">//Infinity</span>
+</code></pre></div></div>
+<ul>
+  <li>数值判断
+    <ul>
+      <li>NaN   not a number 不是一个数字
+        <ul>
+          <li>++NaN 与任何值都不相等，包括他本身++</li>
+        </ul>
+      </li>
+      <li>isNaN()  用来判断是不是一个数字</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="23-string类型">2.3 String类型</h4>
+<ul>
+  <li>
+    <p>字符串字面量</p>
+
+    <p>‘程序员’,’蛋壳er’</p>
+  </li>
+  <li>如何打印一下字符串
+    <ul>
+      <li>我是一个”正直”的人</li>
+      <li>我很喜欢”蛋壳er’蛋蛋’”</li>
+    </ul>
+  </li>
+  <li>转义字符</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">字面量</th>
+      <th>含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">\n</td>
+      <td>换行</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">\t</td>
+      <td>制表</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">等等</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <p>获取字符串长度</p>
+
+    <p>msg.length</p>
+  </li>
+  <li>
+    <p>字符串拼接</p>
+
+    <p>‘hello’ + ‘world’</p>
+  </li>
+</ul>
+
+<h4 id="24-boolean类型">2.4 Boolean类型</h4>
+<ul>
+  <li>字面量  true,false</li>
+  <li>计算机内部，1为true,0为false</li>
+</ul>
+
+<h4 id="25-undefined和null">2.5 undefined和null</h4>
+<ol>
+  <li>undefiend 表示一个变量声明了，但是没有赋值</li>
+  <li>null表示 变量内容为null,必须通过手动设置。</li>
+</ol>
+
+<h4 id="26-获取变量的类型">2.6 获取变量的类型</h4>
+<p>typeof  用于获取变量的类型。</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span><span class="mi">18</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">name</span><span class="o">=</span><span class="dl">'</span><span class="s1">zs</span><span class="dl">'</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">age</span><span class="p">);</span><span class="c1">//number</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">name</span><span class="p">);</span><span class="c1">//string</span>
+
+</code></pre></div></div>
+
+<h4 id="27-注释">2.7 注释</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 单行注释</span>
+
+<span class="cm">/*
+多行注释
+
+多行注释 一般用于描述 整个文档，或者描述某个函数
+
+**/</span>
+
+</code></pre></div></div>
+
+<h3 id="3-数据类型转换">3. 数据类型转换</h3>
+
+<p>使用谷歌浏览器，查看数据类型打印的样式
+字符串是 黑色，数值类型和布尔类型 是蓝色 ，undefined和null 是灰色</p>
+
+<h4 id="31-转换成字符串">3.1 转换成字符串</h4>
+<ul>
+  <li>toString()方法</li>
+  <li>String() 方法</li>
+  <li>通过字符串拼接的方法</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">name</span>  <span class="o">=</span> <span class="dl">'</span><span class="s1">zs</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">isRight</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="c1">// 五种数据类型在 console中打印的样式</span>
+    <span class="c1">// console.log(age);</span>
+    <span class="c1">// console.log(name);</span>
+    <span class="c1">// console.log(isRight);</span>
+    <span class="c1">// console.log(a);</span>
+    <span class="c1">// console.log(b);</span>
+
+
+    <span class="c1">// 转换成字符串的方法</span>
+    <span class="c1">// 1.直接调用toString方法</span>
+    <span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">isRight</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
+
+    <span class="c1">// console.log(typeof num.toString());</span>
+    <span class="c1">// console.log(typeof irRight.toString());</span>
+
+    <span class="c1">// null 和 undefined方法没有 toString方法</span>
+    <span class="c1">// console.log(a.toString());//报错</span>
+
+
+    <span class="c1">// 2. String() 强制类型转换</span>
+    <span class="c1">//console.log(typeof String(num));</span>
+    <span class="c1">//console.log(typeof String(isRight));</span>
+
+    <span class="c1">//console.log(typeof String(a));</span>
+
+    <span class="c1">// 3.字符串拼接(强制类型转换，并且undefined和null类型可以使用)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="p">(</span><span class="nx">num</span> <span class="o">+</span> <span class="dl">''</span><span class="p">));</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="p">(</span><span class="nx">isRight</span> <span class="o">+</span> <span class="dl">''</span><span class="p">));</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="dl">''</span><span class="p">));</span><span class="c1">//undefined</span>
+</code></pre></div></div>
+
+<h4 id="32-转换成数值类型">3.2 转换成数值类型</h4>
+<ul>
+  <li>Number() 强制类型转换
+    <ul>
+      <li>只要字符串中包含字母，就是NaN</li>
+      <li>布尔类型转换成 0 或 1</li>
+    </ul>
+  </li>
+  <li>parseInt() 转换成整数
+    <ul>
+      <li>非数字 是 NaN</li>
+      <li>布尔类型 是 NaN</li>
+      <li>数字开头的字符串是 数字</li>
+      <li>字母开头的字符串 是字母</li>
+    </ul>
+  </li>
+  <li>parseFloat() 转换成浮点数
+    <ul>
+      <li>与parseInt非常类似</li>
+      <li>解析第一个 . ，遇到第二个. 或者 非数字结束</li>
+      <li>如果解析的内容只有整数，那么就返回整数</li>
+    </ul>
+  </li>
+  <li>取正数 或者 负数 或者 - 0 运算
+    <ul>
+      <li>隐式转换</li>
+      <li>如果带有非数字就是NaN</li>
+      <li>能转换布尔类型</li>
+      <li>注意不能 使用+ ,此时是 字符串拼接符</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="c1">// 1. Number 强制类型转换</span>
+    <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">abc</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">isRight</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="c1">// console.log(Number(str)); // NaN</span>
+    <span class="c1">// console.log(Number(isRight));</span>
+
+    <span class="c1">// console.log(Number('123'));</span>
+    <span class="c1">// console.log(Number('123abc'));// Number进行强制类型转换的时候，如果字符串中有一个 字符不是数字的，那么值是NaN</span>
+
+    <span class="c1">// 2.parseInt 转换成整数类型</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">str</span><span class="p">));</span>
+    <span class="c1">// parseInt 无法把布尔类型 转换成 数值</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">isRight</span><span class="p">));</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="dl">'</span><span class="s1">123</span><span class="dl">'</span><span class="p">));</span>
+    <span class="c1">// parseInt在转换的时候，遇到数字则转换成数字，遇到非数字，则返回</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="dl">'</span><span class="s1">123abc</span><span class="dl">'</span><span class="p">));</span> <span class="c1">//</span>
+
+
+    <span class="c1">// 3.parseFloat  用法跟parseInt 相似</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">parseFloat</span><span class="p">(</span><span class="dl">'</span><span class="s1">123.333.221.22</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// 123.333</span>
+
+
+    <span class="c1">// 4. 取正 或取负  或者 进行 数学运算  隐式转换</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">+</span><span class="dl">'</span><span class="s1">123</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">-</span><span class="dl">'</span><span class="s1">555</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">+</span><span class="dl">'</span><span class="s1">abc</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">+</span><span class="dl">'</span><span class="s1">123abc</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">444</span><span class="dl">'</span><span class="o">-</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="33-转换成布尔类型">3.3 转换成布尔类型</h4>
+<p>只有Boolean() 强制类型转换</p>
+
+<p>转换成false 的情况</p>
+<ul>
+  <li>null</li>
+  <li>undefined</li>
+  <li>’’</li>
+  <li>0</li>
+  <li>
+    <p>NaN</p>
+
+    <p>其它情况都是true</p>
+  </li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">abc</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Boolean</span><span class="p">(</span><span class="nx">str</span><span class="p">));</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Boolean</span><span class="p">(</span><span class="nx">num</span><span class="p">));</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Boolean</span><span class="p">(</span><span class="nx">a</span><span class="p">));</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Boolean</span><span class="p">(</span><span class="nx">b</span><span class="p">));</span>
+    <span class="c1">// 转换成  false的五种情况</span>
+    <span class="c1">// 数字0</span>
+    <span class="c1">//  字符串 ''</span>
+    <span class="c1">// undefined</span>
+    <span class="c1">// null</span>
+    <span class="c1">// NaN</span>
+</code></pre></div></div>
+
+	</article>
+</div>
+
+<section class="author-detail">
+<!-- 底部的作者信息 -->
+	<section class="post-footer-item author-card">
+		<div class="avatar">
+			<img src="/assets/img/profile.jpg" alt="">
+		</div>
+		<div class="author-name" rel="author">胡丹丹</div>
+		<div class="bio">
+			<p>软件开发者，不会前端的程序媛不是好的全栈攻城狮</p>
+		</div>
+		
+		<ul class="sns-links">
+			
+			<li>
+				<a href="//www.zhihu.com/people/hu-dan-dan-28-78/activities" target="_blank">
+					<i class="iconfont icon-zhihu"></i>
+				</a>
+			</li>
+			
+			<li>
+				<a href="//github.com/DaniellaAngel" target="_blank">
+					<i class="iconfont icon-github"></i>
+				</a>
+			</li>
+			
+			<li>
+				<a href="//juejin.im/user/5cef91b1f265da1ba77c88d6" target="_blank">
+					<i class="iconfont icon-juejin"></i>
+				</a>
+			</li>
+			
+		</ul>
+		
+	</section>
+	
+	<section class="post-footer-item read-next">
+		
+		<div class="read-next-item">
+			<a href="/jekyll/update/2019/07/10/canvas-draw-clock.html" class="read-next-link"></a>
+			<section>
+				<p>上一篇</p>
+				<span>JavaScript实现数字Canvas绘制时钟</span>
+				<p>使用canvas绘制时钟</p>
+			</section>
+			
+		</div>
+		
+		
+		<div class="read-next-item">
+			<a href="/jekyll/update/2019/07/09/Introduce-javascript.html" class="read-next-link"></a>
+			<section>
+				<p>下一篇</p>
+				<span>0.JavaScript简介</span>
+				<p>JavaScript的组成和引入方式</p>
+			</section>
+			
+		</div>
+		
+		
+	</section>
+</section>
+
+<footer class="g-footer">
+  <section>蛋壳er蛋蛋 ©
+  
+  
+  2019
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a></section>
+</footer>
+<a href="javascript:;" id="toTop" class="post-to-top" title="回到顶部"/>
+<script src="/assets/js/prism.js"></script>
+<script src="/assets/js/index.js"></script>
+<script src="/assets/js/toTop.js"></script>
+</body>
+
+</html>

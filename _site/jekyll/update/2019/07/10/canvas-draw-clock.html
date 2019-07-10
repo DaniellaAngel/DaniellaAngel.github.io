@@ -1,0 +1,305 @@
+<!-- _post文件中的HTML使用此处的layout方式 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JavaScript实现数字Canvas绘制时钟 - 蛋壳er蛋蛋</title>
+	<meta name="author" content="胡丹丹">
+	<meta name="description" content="我是一名软件工程师，坐标上海。目前主要是做web前端，Flag我就不立了，这里会写各种吧应该，先push一些当前学过的基础知识复习。 先就这些吧，以后应该会更新。20190709">
+	<!-- Normalize.css是一种CSS reset的替代方案。它在默认的HTML元素样式上提供了跨浏览器的高度一致性-->
+	<link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+	<!--  -->
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_271755_rdxzzo2kqwk.css">
+	<link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+	<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	<!-- 做一些不同的配置 -->
+</head>
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+<input id="nm-switch" type="hidden" value=""> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/about">about</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+<!--博客banner加底纹 -->
+<header
+class="g-banner post-header post-pattern-ticTacToe bgcolor-default post-no-cover"
+data-theme="default"
+>
+<div class="post-wrapper">
+	<h1>JavaScript实现数字Canvas绘制时钟</h1>
+	<div class="post-meta">
+		<span class="post-meta-item"><i class="iconfont icon-author"></i>胡丹丹</span>
+		<time class="post-meta-item" datetime="19-07-10"><i class="iconfont icon-date"></i>10 Jul 2019</time>
+	</div>
+</div>
+<!-- cover 是设置图片不准备使用，预留，能用CSS解决的就不额外加载图片 -->
+
+</header>
+
+<div class="post-content visible">
+	<!-- 副标题 -->
+	
+	<h2 class="post-subtitle">使用canvas绘制时钟</h2>
+	
+	<!-- markDown部分内容 -->
+	<article class="markdown-body">
+		<p>直接上代码：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"X-UA-Compatible"</span> <span class="na">content=</span><span class="s">"IE=edge"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>canvas时钟<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"clock"</span> <span class="na">style=</span><span class="s">"position: relative;"</span> <span class="na">data-width=</span><span class="s">"260"</span> <span class="na">data-height=</span><span class="s">"260"</span> <span class="na">data-body-color=</span><span class="s">"#000"</span> <span class="na">data-light-color=</span><span class="s">"#000"</span> <span class="na">data-dot-raduis=</span><span class="s">"6"</span> <span class="na">data-raduis=</span><span class="s">"120"</span> <span class="na">data-border-width=</span><span class="s">"6"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+    <span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="kd">var</span> <span class="nx">clock</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">clock</span><span class="dl">'</span><span class="p">);</span>
+        <span class="c1">// 时钟的外观设定 变量初始化</span>
+        <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">clock</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">data-width</span><span class="dl">'</span><span class="p">);</span> <span class="c1">//桌布宽度</span>
+        <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">clock</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">data-height</span><span class="dl">'</span><span class="p">);</span> <span class="c1">//桌布高度</span>
+        <span class="kd">var</span> <span class="nx">clockSkin</span> <span class="o">=</span> <span class="nx">clock</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">data-body-color</span><span class="dl">'</span><span class="p">);</span><span class="c1">//时钟颜色</span>
+        <span class="kd">var</span> <span class="nx">lightSkin</span> <span class="o">=</span> <span class="nx">clock</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">data-light-color</span><span class="dl">'</span><span class="p">);</span><span class="c1">//时钟小刻度颜色</span>
+        <span class="kd">var</span> <span class="nx">dotRaduis</span> <span class="o">=</span> <span class="nx">clock</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">data-dot-raduis</span><span class="dl">'</span><span class="p">);</span><span class="c1">//时钟原点半径</span>
+        <span class="kd">var</span> <span class="nx">dot</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="na">x</span><span class="p">:</span> <span class="nx">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+          <span class="na">y</span><span class="p">:</span> <span class="nx">height</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+          <span class="na">raduis</span><span class="p">:</span> <span class="nx">dotRaduis</span>
+        <span class="p">};</span><span class="c1">//原点位置，半径</span>
+        <span class="kd">var</span> <span class="nx">raduis</span> <span class="o">=</span> <span class="nx">clock</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">data-raduis</span><span class="dl">'</span><span class="p">);</span><span class="c1">//圆半径</span>
+        <span class="kd">var</span> <span class="nx">borderWidth</span> <span class="o">=</span> <span class="nx">clock</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">data-border-width</span><span class="dl">'</span><span class="p">);</span><span class="c1">//圆边框宽度</span>
+        <span class="c1">//创建</span><span class="o">&lt;</span><span class="nx">canvas</span><span class="o">&gt;</span><span class="err">元素</span>
+        <span class="c1">//创建两个canvas，将钟盘和指针分离开，指针需要根据当前时间擦除重绘</span>
+        <span class="kd">var</span> <span class="nx">clockBg</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">canvas</span><span class="dl">'</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">clockPointers</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">canvas</span><span class="dl">'</span><span class="p">);</span>
+        <span class="nx">clockPointers</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">clockBg</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
+        <span class="nx">clockPointers</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">clockBg</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">height</span><span class="p">;</span>
+        <span class="nx">clockPointers</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">absolute</span><span class="dl">'</span><span class="p">;</span>
+        <span class="nx">clockPointers</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nx">clockPointers</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        
+        <span class="nx">clock</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">clockBg</span><span class="p">);</span>
+        <span class="nx">clock</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">clockPointers</span><span class="p">);</span>
+        <span class="c1">//但凡要在</span><span class="o">&lt;</span><span class="nx">canvas</span><span class="o">&gt;</span><span class="err">中绘图，都要先获得其上下文，对应的接口是</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span>
+        <span class="kd">var</span> <span class="nx">bgCtx</span> <span class="o">=</span> <span class="nx">clockBg</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">);</span>
+        <span class="c1">//绘制最外面的圆框</span>
+        <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+        <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="nx">borderWidth</span><span class="p">;</span>
+        <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">clockSkin</span><span class="p">;</span>
+        <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">arc</span><span class="p">(</span><span class="nx">dot</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">dot</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="nx">raduis</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+        <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">closePath</span><span class="p">();</span>
+        <span class="c1">//绘制圆点</span>
+        <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+        <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">clockSkin</span><span class="p">;</span>
+        <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">arc</span><span class="p">(</span><span class="nx">dot</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">dot</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="nx">dot</span><span class="p">.</span><span class="nx">raduis</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
+        <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">closePath</span><span class="p">();</span>
+        <span class="c1">//绘制刻度</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">angle</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">tmp</span><span class="p">,</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+          <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+          <span class="c1">//突出显示能被5除尽的刻度</span>
+          <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">===</span> <span class="nx">i</span> <span class="o">%</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+            <span class="nx">len</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+            <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">clockSkin</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="nx">len</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+            <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">lightSkin</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+          <span class="nx">tmp</span> <span class="o">=</span> <span class="nx">raduis</span> <span class="o">-</span> <span class="nx">borderWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="c1">//因为圆有边框，所以要减去边框宽度</span>
+          <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span>
+            <span class="nx">dot</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">tmp</span><span class="o">*</span><span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">angle</span><span class="p">),</span>
+            <span class="nx">dot</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="nx">tmp</span><span class="o">*</span><span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">angle</span><span class="p">)</span>
+            <span class="p">);</span>
+          <span class="nx">tmp</span> <span class="o">-=</span> <span class="nx">len</span><span class="p">;</span>
+          <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="nx">dot</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">tmp</span><span class="o">*</span><span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">angle</span><span class="p">),</span><span class="nx">dot</span><span class="p">.</span><span class="nx">y</span><span class="o">+</span><span class="nx">tmp</span><span class="o">*</span><span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">angle</span><span class="p">));</span>
+          <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+          <span class="nx">bgCtx</span><span class="p">.</span><span class="nx">closePath</span><span class="p">();</span>
+        
+          <span class="nx">angle</span> <span class="o">+=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">30</span><span class="p">;</span><span class="c1">//每次递增1/30π</span>
+        <span class="p">}</span>
+        <span class="c1">//绘制指针</span>
+        <span class="kd">var</span> <span class="nx">ptxCtx</span> <span class="o">=</span> <span class="nx">clockPointers</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">);</span>
+        <span class="c1">//画指针的操作每隔一秒执行一次</span>
+        <span class="kd">function</span> <span class="nx">updatePointers</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">ptxCtx</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nx">width</span><span class="p">,</span><span class="nx">height</span><span class="p">);</span><span class="c1">//清掉原来的指针</span>
+        
+        <span class="c1">//获取当前时间</span>
+        <span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+        <span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">now</span><span class="p">.</span><span class="nx">getHours</span><span class="p">();</span>
+        <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">now</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">();</span>
+        <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">now</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">();</span>
+        
+        <span class="c1">//算出时分秒指针现在应该指向圆的几分之几处</span>
+        <span class="nx">h</span> <span class="o">=</span> <span class="nx">h</span> <span class="o">&gt;</span> <span class="mi">12</span> <span class="p">?</span> <span class="nx">h</span> <span class="o">-</span> <span class="mi">12</span> <span class="p">:</span> <span class="nx">h</span><span class="p">;</span>
+        <span class="nx">h</span> <span class="o">=</span> <span class="nx">h</span> <span class="o">+</span> <span class="nx">m</span> <span class="o">/</span> <span class="mi">60</span><span class="p">;</span>
+        <span class="nx">h</span> <span class="o">=</span> <span class="nx">h</span> <span class="o">/</span> <span class="mi">12</span><span class="p">;</span>
+        <span class="nx">m</span> <span class="o">=</span> <span class="nx">m</span> <span class="o">/</span> <span class="mi">60</span><span class="p">;</span>
+        <span class="nx">s</span> <span class="o">=</span> <span class="nx">s</span> <span class="o">/</span> <span class="mi">60</span><span class="p">;</span>
+        
+        <span class="nx">drawPointers</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">92</span><span class="p">);</span><span class="c1">//画秒针</span>
+        <span class="nx">drawPointers</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">82</span><span class="p">);</span><span class="c1">//画分针</span>
+        <span class="nx">drawPointers</span><span class="p">(</span><span class="nx">h</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">65</span><span class="p">);</span><span class="c1">//画时针</span>
+        
+        <span class="p">}</span>
+        <span class="c1">//angle：角度；lineWidth：指针宽度；length：指针长度</span>
+        <span class="kd">function</span> <span class="nx">drawPointers</span><span class="p">(</span><span class="nx">angle</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">,</span> <span class="nx">length</span><span class="p">){</span>
+          <span class="nx">angle</span> <span class="o">=</span> <span class="nx">angle</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+        
+          <span class="nx">ptxCtx</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+          <span class="nx">ptxCtx</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="nx">lineWidth</span><span class="p">;</span>
+          <span class="nx">ptxCtx</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">clockSkin</span><span class="p">;</span>
+          <span class="nx">ptxCtx</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">dot</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">dot</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+          <span class="nx">ptxCtx</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="nx">dot</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">length</span><span class="o">*</span><span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">angle</span><span class="p">),</span> <span class="nx">dot</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="nx">length</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">angle</span><span class="p">));</span>
+          <span class="nx">ptxCtx</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+          <span class="nx">ptxCtx</span><span class="p">.</span><span class="nx">closePath</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="c1">//定时器调用</span>
+        <span class="nx">setInterval</span><span class="p">(</span><span class="nx">updatePointers</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>
+        <span class="nx">updatePointers</span><span class="p">();</span> 
+    <span class="p">}());</span>
+
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+ 
+
+</code></pre></div></div>
+
+<h3 id="核心知识点">核心知识点</h3>
+
+<h4 id="1-canvas绘图的流程">1. canvas绘图的流程：</h4>
+
+<ol>
+  <li>调用 context.beginPath() 新建路径；</li>
+  <li>设置颜色等样式；</li>
+  <li>调用路径函数生成路径；</li>
+  <li>画线（stroke）或者填充（fill）；</li>
+  <li>调用 context.closePath() 关闭路径</li>
+</ol>
+
+<p>canvas基本API:</p>
+
+<h4 id="2-时钟里面三角函数的应用">2. 时钟里面三角函数的应用</h4>
+
+<p>Math.PI;</p>
+
+<p>Math.sin();</p>
+
+<p>Math.cons();</p>
+
+<h4 id="3-立即执行函数表达式">3. 立即执行函数表达式：</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//这两种模式都可以被用来立即调用一个函数表达式，利用函数的执行来创造私有变量</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="cm">/* code */</span><span class="p">}());</span><span class="c1">//Crockford recommends this one，括号内的表达式代表函数立即调用表达式</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="cm">/* code */</span><span class="p">})();</span><span class="c1">//But this one works just as well，括号内的表达式代表函数表达式</span>
+<span class="c1">//当圆括号出现在匿名函数的末尾想要调用函数时，它会默认将函数当成是函数声明。</span>
+<span class="c1">//当圆括号包裹函数时，它会默认将函数作为表达式去解析，而不是函数声明</span>
+</code></pre></div></div>
+
+
+	</article>
+</div>
+
+<section class="author-detail">
+<!-- 底部的作者信息 -->
+	<section class="post-footer-item author-card">
+		<div class="avatar">
+			<img src="/assets/img/profile.jpg" alt="">
+		</div>
+		<div class="author-name" rel="author">胡丹丹</div>
+		<div class="bio">
+			<p>软件开发者，不会前端的程序媛不是好的全栈攻城狮</p>
+		</div>
+		
+		<ul class="sns-links">
+			
+			<li>
+				<a href="//www.zhihu.com/people/hu-dan-dan-28-78/activities" target="_blank">
+					<i class="iconfont icon-zhihu"></i>
+				</a>
+			</li>
+			
+			<li>
+				<a href="//github.com/DaniellaAngel" target="_blank">
+					<i class="iconfont icon-github"></i>
+				</a>
+			</li>
+			
+			<li>
+				<a href="//juejin.im/user/5cef91b1f265da1ba77c88d6" target="_blank">
+					<i class="iconfont icon-juejin"></i>
+				</a>
+			</li>
+			
+		</ul>
+		
+	</section>
+	
+	<section class="post-footer-item read-next">
+		
+		<div class="read-next-item">
+			<a href="/jekyll/update/2019/07/10/back-to-top.html" class="read-next-link"></a>
+			<section>
+				<p>上一篇</p>
+				<span>JavaScript实现回到顶部</span>
+				<p>原生js实现回到顶部，越接近顶部滚动越慢的效果</p>
+			</section>
+			
+		</div>
+		
+		
+		<div class="read-next-item">
+			<a href="/jekyll/update/2019/07/09/javascript-base-1.html" class="read-next-link"></a>
+			<section>
+				<p>下一篇</p>
+				<span>1.JavaScript基础(变量，数据类型)</span>
+				<p>JavaScript基础知识：变量和数据类型概述</p>
+			</section>
+			
+		</div>
+		
+		
+	</section>
+</section>
+
+<footer class="g-footer">
+  <section>蛋壳er蛋蛋 ©
+  
+  
+  2019
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a></section>
+</footer>
+<a href="javascript:;" id="toTop" class="post-to-top" title="回到顶部"/>
+<script src="/assets/js/prism.js"></script>
+<script src="/assets/js/index.js"></script>
+<script src="/assets/js/toTop.js"></script>
+</body>
+
+</html>

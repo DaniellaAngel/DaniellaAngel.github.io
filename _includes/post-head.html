@@ -1,0 +1,16 @@
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+	<meta name="author" content="{{site.author}}">
+	<meta name="description" content="{{site.description}}">
+	<!-- Normalize.css是一种CSS reset的替代方案。它在默认的HTML元素样式上提供了跨浏览器的高度一致性-->
+	<link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+	<!--  -->
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_271755_rdxzzo2kqwk.css">
+	<link rel="stylesheet" href="{{ "/assets/css/github-markdown.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/prism.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/app.css" | relative_url }}">
+	<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	<!-- 做一些不同的配置 -->
+</head>
