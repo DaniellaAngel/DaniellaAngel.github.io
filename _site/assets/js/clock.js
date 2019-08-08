@@ -1,5 +1,6 @@
 (function(){
 var clock = document.getElementById('clock');
+if(!clock) return;
 // 时钟的外观设定 变量初始化
 var width = clock.getAttribute('data-width'); //桌布宽度
 var height = clock.getAttribute('data-height'); //桌布高度

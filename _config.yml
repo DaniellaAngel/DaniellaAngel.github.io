@@ -52,8 +52,10 @@ sns:
 
 #导航设置
 nav:
-  home: '/'
-  about: '/about'
+  首页: '/'
+  关于我: '/about'
+  前端科普: '/FEQA'
+
 
 #Footer设置
 footer:

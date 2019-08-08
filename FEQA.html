@@ -1,0 +1,25 @@
+---
+layout: default
+title: FEAQ
+---
+{% include header.html %}
+
+<div class="g-banner about-banner {{ site.postPatterns | prepend: 'post-pattern-' }} {{ site.theme-color | prepend: 'bgcolor-' }}" data-theme="{{ site.theme-color }}">
+    <h2>前端科普知识MDN导航</h2>
+</div>
+
+<main class="qa-content">
+	<div class="qa-waterfall">
+	{% for item in site.data.fnKnowledgeSystem %}
+	<div class="qa-item">
+        <div class="qa-item-content">
+         	<div style="font-weight:700;border-bottom: 1px solid #ccc;">{{forloop.index}}. {{item.title}}</div>
+            <div>{{item.abstrct}}</div>
+            <a class="qa-link" href="{{item.link}}" target="_blank" title="{{item.title}}"></a>
+        </div>
+    </div>
+    {% endfor %}
+	</div>    
+</main>
+    
+{% include footer.html %}
